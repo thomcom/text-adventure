@@ -58,6 +58,16 @@ class Hero(Adventurer):
        result_string = result_string + str(self.special_attack[2]) + " bonus attack on your next turn\n"
        return result_string
 
+class Knight(Adventurer):
+    def __init__(self):
+        super(self.__class__, self).__init__("Knight", "farm")
+        self.attacks = [[3,4],[4,3]]
+        self.special_attack = [2,3,4]
+    def Summary(self):
+       result_string = super(self.__class__, self).Summary()
+       result_string = result_string + str(self.special_attack[2]) + " bonus attack on your next turn\n"
+       return result_string
+
 class Wizard(Adventurer):
     def __init__(self):
         super(self.__class__, self).__init__("Wizard", "Tower")
@@ -68,9 +78,11 @@ def create_hero(choice):
     if choice == 1:
         character = Barbarian()
     elif choice == 2:
-        character = Hero() 
+        character = Hero()
     elif choice == 3:
         character = Wizard()
+    elif choice == 4:
+        character = Knight()
     return character
 
 def get_input():
@@ -94,6 +106,7 @@ def main():
     print "1. Barbarian"
     print "2. Hero"
     print "3. Wizard"
+    print "4. Knight"
     choice = input("Your selection?")
     local_hero = create_hero(choice)
     local_hero.PrintClassName()
